@@ -1,12 +1,28 @@
-import { StyleSheet, View, ViewStyle } from "react-native";
+import colors from "@/styles/colors";
 import React from "react";
+import { StyleSheet, View } from "react-native";
+/*
+this seperator will be used as a visual to seperate
+the rows in flatList
+the user can pass in an optional prop for color
 
-const ListItemSseparator = () => {
-  return <View />;
+*/
+
+type propsType = {
+  color?: string;
+
+}
+const ListItemSeparator:React.FC<propsType> = ({
+  color
+}) => {
+  return <View style={[styles.separator,{backgroundColor:color||colors.theme.light.text}]}/>;
 };
 
-export default ListItemSseparator;
+export default ListItemSeparator;
 
 const styles = StyleSheet.create({
-  separator: {},
+  separator: {
+    height:3,
+    width:"100%",//
+  },
 });

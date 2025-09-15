@@ -1,6 +1,9 @@
+import ListItemSeparator from "@/components/ListItemSeperator";
+import { DATA, dataType } from "@/data/appdata";
 import colors from "@/styles/colors";
 import defaultStyles from "@/styles/defaultStyles";
 import { useState } from "react";
+
 import {
   FlatList,
   StyleSheet,
@@ -10,18 +13,6 @@ import {
 } from "react-native";
 
 export default function Index() {
-  // declare datatype for each item in array
-  type dataType = {
-    id: string;//unique identifyer
-    title: string; // text displayed in flatlist
-  }
-
-  const DATA: dataType[] = [
-      {id: "1",title: "First item"},
-      {id: "2",title: "Second item"},
-      {id: "3",title: "Third item"},
-      {id: "4",title: "Fourth item"},
-  ];
 
   // create a state var to keep track of selected id
   const [selectedId,setSelectedId] = useState<string>("1");
@@ -39,6 +30,10 @@ export default function Index() {
           <FlatList 
             data={DATA}
             keyExtractor={(item: dataType)=>item.id}
+            extraData={selectedId}
+            ItemSeparatorComponent={()=> 
+              <ListItemSeparator color='lightblue'/>
+            }
             renderItem={({item})=>(
               <TouchableOpacity onPress={()=>itemSelected(item)}>
                   <View style={[styles.FlatListRow,{
@@ -47,7 +42,6 @@ export default function Index() {
                   }]}>
                     <Text style={[defaultStyles.text,{
                       color: item.id===selectedId?colors.text.light:colors.text.dark
-                  
                   }]}
                  >{item.title}</Text>
                   </View>
