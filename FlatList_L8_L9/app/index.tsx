@@ -14,7 +14,7 @@ import {
 export default function Index() {
 
   // create a state var to keep track of selected id
-  const [selectedId,setSelectedId] = useState<string>("1");
+  const [selectedId,setSelectedId] = useState<string>("-1");
   const itemSelected = (item: dataType) => {
     console.log(item.title)
     setSelectedId(item.id);
